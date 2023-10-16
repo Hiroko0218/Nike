@@ -1,0 +1,46 @@
+-- 商城相關數據表的測試數據
+
+TRUNCATE mall_category;
+INSERT INTO mall_category
+VALUES (1, '男款', 0, 1, '', 99,'http://localhost:28082/resources/goods-image/2023/09/08/男鞋.jpg', 1, 1, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (2, 'Jordan', 1, 2, '', 89, 'http://localhost:28082/resources/goods-image/2023/09/08/Air Jordan 1 中筒 SE 男鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (3, '跑步', 1, 2, '', 88, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Free RN NN 男款路跑鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (4, '籃球', 1, 2, '', 87, 'http://localhost:28082/resources/goods-image/2023/09/08/Freak 5 EP 籃球鞋 (1).jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (5, '足球', 1, 2, '', 86, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Phantom Luna 天然偏硬草地足球釘鞋 (1).jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (6, '健身與訓練', 1, 2, '', 85, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Free Metcon 5 男款健身訓練鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (7, '涼鞋與拖鞋', 1, 2, '', 84, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Air More Uptempo 男款拖鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (8, '女款', 0, 1, '', 98, 'http://localhost:28082/resources/goods-image/2023/09/08/女鞋.jpg', 1, 1, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (9, 'Jordan', 8, 2, '', 89, 'http://localhost:28082/resources/goods-image/2023/09/08/Air Air Jordan 1 Zoom CMFT 2 女鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (10, '跑步', 8, 2, '', 88, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike InfinityRN 4 女款路跑鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (11, '籃球', 8, 2, '', 87, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Elevate 3 籃球鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (12, '足球', 8, 2, '', 86, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Phantom GT2 Academy FlyEase  輕鬆穿脫多種場地足球釘鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (13, '健身與訓練', 8, 2, '', 85, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike City Rep TR 女款訓練鞋.jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+       (14, '涼鞋與拖鞋', 8, 2, '', 84, 'http://localhost:28082/resources/goods-image/2023/09/08/Nike Air Max Koko 女款涼鞋 (22-29 公分).jpg', 1, 0, 1, '2023-09-08 08:00:00', '2023-09-08 08:00:00')
+
+;
+
+TRUNCATE mall_goods;
+INSERT INTO mall_goods VALUES (1, 2, 'Jordan', '11010101110001', 'Air Jordan 1', '中筒 SE 男鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男子 Jordan 鞋款/Air Jordan 1 中筒 SE 男鞋.jpg', 3600.00, 'Jordan,中筒,男鞋', 0, 0, 0, 1, 0, 0, 0, 0, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (2, 2, 'Jordan', '11010101100101', 'Air Jordan 1', '低筒 OG 鞋款', 'http://localhost:28082/resources/goods-image/2023/09/08/男子 Jordan 鞋款/Air Jordan 1 低筒 OG 鞋款.jpg', 4200.00, 'Jordan,低筒,男鞋', 0, 0, 1, 0, 0, 0, 0, 0, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (3, 3, '跑步', '11010011101010', 'Nike Free RN NN', '男款路跑鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款跑鞋/Nike Free RN NN 男款路跑鞋.jpg', 3980.00, '男鞋,路跑鞋', 0, 0, 2, 0, 0, 0, 0, 0, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (4, 3, '跑步', '11011101001010', 'Nike InfinityRN 4 SE', '男款路跑鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款跑鞋/Nike InfinityRN 4 SE 男款路跑鞋.jpg', 3950.00, '男鞋,路跑鞋', 0, 0, 1, 0, 0, 0, 0, 0, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (5, 4, '籃球', '11010100111010', 'Air Jordan XXXVIII _FIBA_ PF', '籃球鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款籃球鞋/Air Jordan XXXVIII _FIBA_ PF 籃球鞋.jpg', 7200.00, 'Jordan,籃球鞋,男鞋', 0, 0, 0, 0, 0, 0, 0, 0, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (6, 5, '足球', '11001001111010', 'Nike Phantom Luna', '天然偏硬草地足球釘鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款足球鞋/Nike Phantom Luna 天然偏硬草地足球釘鞋 (1).jpg', 3100.00, '足球,男鞋', 0, 1, 1, 1, 65535, 43223, 41342, 53, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (7, 7, '涼鞋與拖鞋', '11010100011110', 'Nike Air More Uptempo', '男款拖鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款涼鞋與拖鞋/Nike Air More Uptempo 男款拖鞋.jpg', 1000.00, '休閒,涼鞋,拖鞋,男鞋', 0, 1, 1, 1, 27547, 21213, 19654, 54, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (8, 6, '健身與訓練', '11000111011010', 'Nike Free Metcon 5', '男款健身訓練鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/男款健身鞋/Nike Free Metcon 5 男款健身訓練鞋.jpg', 3990.00, '健身,訓練,男鞋', 0, 1, 1, 1, 45323, 27242, 23353, 67, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (9, 9, 'Jordan', '11010101011010', 'Air Jordan 1 Zoom CMFT 2','女鞋','http://localhost:28082/resources/goods-image/2023/09/08/女子 Jordan 鞋款/Air Jordan 1 Zoom CMFT 2 女鞋.jpg', 2980.00, 'Jordan,女鞋', 0, 1, 1, 1, 65423, 51443, 48562, 81, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (10, 9, 'Jordan', '11010101011010', 'Air Jordan 1', '中筒 女鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/女子 Jordan 鞋款/Air Jordan 1 中筒 女鞋.jpg', 3890.00, 'Jordan,中筒 女鞋', 0, 1, 1, 1, 43562, 41763, 38667, 74, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (11, 10, '跑步', '11010101010110', 'Nike InfinityRN 4', '女款路跑鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/女款跑鞋/Nike InfinityRN 4 女款路跑鞋.jpg', 1290.00, '路跑鞋,女鞋', 0, 1, 1, 1, 54542, 44324, 42907, 26, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (12, 10, '跑步', '11010010111010', 'Nike Invincible 3', '女款路跑鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/女款跑鞋/Nike Invincible 3 女款路跑鞋.jpg', 1380.00, '路跑鞋,女鞋', 0, 1, 1, 1, 65635, 54242, 51974, 93, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (13, 11, '籃球', '11010111001010', 'Air Jordan XXXVII 低筒鞋', '女款籃球鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/女款籃球鞋/Air Jordan XXXVII 低筒鞋 女款籃球鞋.jpg', 1960.00, '低筒鞋,籃球鞋,女鞋', 0, 1, 1, 1, 65839, 56523, 52886, 13, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (14, 12, '足球', '11100101001110', 'Nike Phantom GT2 Academy FlyEase','輕鬆穿脫多種場地足球釘鞋','http://localhost:28082/resources/goods-image/2023/09/08/女款足球鞋/Nike Phantom GT2 Academy FlyEase  輕鬆穿脫多種場地足球釘鞋.jpg', 2580.00,'足球,女鞋', 0, 1, 1, 1, 43546, 33124, 31873, 56, '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                              (15, 13, '健身與訓練', '11000111101010', 'Nike City Rep TR', '女款訓練鞋', 'http://localhost:28082/resources/goods-image/2023/09/08/女款健身鞋/Nike City Rep TR 女款訓練鞋.jpg', 3800.00, '健身,訓練,女鞋', 0, 1, 1, 1, 76434, 54542, 53972, 61, '2023-09-08 08:00:00', '2023-09-08 08:00:00');
+
+TRUNCATE mall_goods_detail;
+INSERT INTO mall_goods_detail (goods_id, detail, gmt_create, gmt_modified) VALUES
+                                                                               (1, '<p><img src="http://localhost:28082/resources/goods-image/2023/09/08/男子 Jordan 鞋款/Air Jordan 1 中筒 SE 男鞋.jpg" style="max-width:100%;" contenteditable="false"/><br/>復古色上腳，時尚有型！ 這款運動鞋以磨砂絨皮混搭麂皮的鞋面，營造柔軟造型質感。 鞋底 Nike Air，讓你步步輕盈如風。</p>', '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                                                                               (2, '<p><img src="http://localhost:28082/resources/goods-image/2023/09/08/男子 Jordan 鞋款/Air Jordan 1 低筒 OG 鞋款.jpg" style="max-width:100%;" contenteditable="false"/><br/>Air Jordan 1 OG 低筒鞋採用全新配色和紋理，重新演繹經典運動鞋。 高級材質與裝飾，賦予雋永人氣鞋款全新風貌。</p>', '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                                                                               (3, '<p><img src="http://localhost:28082/resources/goods-image/2023/09/08/男款跑鞋/Nike Free RN NN 男款路跑鞋.jpg" style="max-width:100%;" contenteditable="false"/><br/>如果你渴望自由，這款路跑鞋能讓你徹底解放。 輕盈如羽又彈性，Flyknit 鞋面搭配赤足腳感，讓你歡欣自由奔馳，停不下來。</p>', '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                                                                               (4, '<p><img src="http://localhost:28082/resources/goods-image/2023/09/08/男款跑鞋/Nike InfinityRN 4 SE 男款路跑鞋.jpg" style="max-width:100%;" contenteditable="false"/></br/>Nike InfinityRN 4 採用專為流暢奔馳體驗打造的支撐緩震系統，讓你我熟悉的人氣單品煥新登場。 與 Nike React 泡棉相比，全新 Nike ReactX 泡棉的能量回傳效果高出 13%，有助全程維持充沛活力與彈力。 (還有什麼優點？ 在中底的部分，Nike ReactX 比 Nike React 泡棉降低至少 43% 的碳足跡，為聲援地球盡一份力。) 以 ReactX 泡棉搭配 Nike 跑步系列中貼合度最高的 Flyknit，打造穩固的鞋面支撐力與透氣性，任你隨時隨地想跑就跑。 直覺設計，為邁出的每一步提供支撐，讓你無後顧之憂，盡情跑得更快更遠。 這款大膽搶眼的不對稱設計，頌揚你在跑步時的混搭之美。</p>', '2023-09-08 08:00:00', '2023-09-08 08:00:00'),
+                                                                               (5, '<p><img src="http://localhost:28082/resources/goods-image/2023/09/08/男款籃球鞋/Air Jordan XXXVIII _FIBA_ PF 籃球鞋.jpg" style="max-width:100%;" contenteditable="false"/><br/>在籃球這一領域，Jordan 品牌作為創新者兼合作者，已享有全球信譽。 這款 AJ XXXVIII 旨在向全世界籃球運動專責機構「國際籃球總會」致敬。 就如白光包含光譜內的所有顏色，搶眼的外層底下隱藏著以鮮艷 FIBA 標誌所有色澤為裝飾的內底。 大膽，由內而外。</p>', '2023-09-08 08:00:00', '2023-09-08 08:00:00');
+

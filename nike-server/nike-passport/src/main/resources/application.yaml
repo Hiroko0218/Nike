@@ -1,0 +1,59 @@
+# ####################################### #
+# 此文件是本項目的主配置文件，所有配置將被應用 #
+# ####################################### #
+
+# 服務器的配置
+server:
+  # Servlet（Java用於處理請求的組件）的配置
+  servlet:
+    # 編碼配置
+    encoding:
+      # 強制使用指定的編碼
+      force: true
+      # 字符集
+      charset: UTF-8
+
+# Spring的配置
+spring:
+  # Profile的配置
+  profiles:
+    # 激活哪些Profile配置
+    active: dev
+  # Jackson框架的配置
+  jackson:
+    # 響應的JSON結果中默認包含什麽樣的屬性
+    default-property-inclusion: non_null
+  # 數據源的配置
+  datasource:
+    # 連接數據庫的URL
+    url: jdbc:mysql://${nike.datasource.host}:${nike.datasource.port}/nike?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    # 數據庫用戶名
+    username: ${nike.datasource.username}
+    # 數據庫密碼
+    password: ${nike.datasource.password}
+    # Druid連接池的配置
+    druid:
+      # 初始化連接數量
+      initial-size: ${nike.datasource.initial-size}
+      # 最大激活數量
+      max-active: ${nike.datasource.max-active}
+  # Redis配置
+  redis:
+    # 主機
+    host: ${nike.redis.host}
+    # 端口
+    port: ${nike.redis.port}
+    # 用戶名
+    username: ${nike.redis.username}
+    # 密碼
+    password: ${nike.redis.password}
+
+# MyBatis Plus配置
+mybatis-plus:
+  # 配置SQL語句的XML文件的位置
+  mapper-locations: classpath:mappers/**/*.xml
+
+# Knife4j配置
+knife4j:
+  # 開啟增強模式
+  enable: true
