@@ -1,0 +1,47 @@
+### VUE Cli ###
+node_modules
+/dist
+
+### local env files ###
+.env.local
+.env.*.local
+
+### Log files ###
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+### Editor directories and files ###
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+### Java ###
+HELP.md
+target/
+.mvn/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Mac OS ###
+.DS_Store
