@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h3>{{info}}</h3>
+
+    <el-dropdown @command="handleCommand">
+  <span class="el-dropdown-link">
+    下拉菜單<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+        <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="黃金糕">黃金糕</el-dropdown-item>
+            <el-dropdown-item command="獅子頭">獅子頭</el-dropdown-item>
+            <el-dropdown-item command="螺獅粉">螺獅粉</el-dropdown-item>
+            <el-dropdown-item command="雙皮奶" disabled>雙皮奶</el-dropdown-item>
+            <el-dropdown-item command="蚵仔煎" divided>蚵仔煎</el-dropdown-item>
+        </el-dropdown-menu>
+    </el-dropdown>
+
+    <h3>自己的下拉名單</h3>
+    <el-dropdown @command="handleCommand">
+  <span class="el-dropdown-link">
+    下拉名單<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+        <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="name in arr":command="name">{{name}}</el-dropdown-item>
+        </el-dropdown-menu>
+    </el-dropdown>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                info: "",
+                arr:["劉備","孫尚香","劉禪","周瑜"]
+            }
+        },
+        methods: {
+            handleCommand(command){
+                v.info=command;
+            }
+        }
+    })
+</script>
+</html>

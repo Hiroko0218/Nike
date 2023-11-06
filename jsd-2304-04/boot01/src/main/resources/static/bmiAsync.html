@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text" placeholder="請輸入身高(米)" v-model="h">
+    <input type="text" placeholder="請輸入體重(公斤)" v-model="w">
+    <input type="button" value="開始測試" @click="f()">
+    <h1>測試结果:{{info}}</h1>
+</div>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<!--引入axios框架文件-->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"",h:"",w:""
+        },
+        methods:{
+            f() {
+                //發出異步請求
+                axios.get("/bmi?h=" + v.h + "&w=" + v.w).then(function (response) {
+                    //請求成功後(服務器響應完之後)會執行此處的代碼
+                    //response對象中的data屬性是服務器響應的數據
+                    v.info = response.data;
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

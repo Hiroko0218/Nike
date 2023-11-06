@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* 後代選擇器 */
+        /* body div div p{
+            color: red; }
+        */
+        /* 子元素選擇器 */
+        body>div>p{
+            color: red;
+        }
+        /* 偽類選擇器:用来選擇元素的狀態 */
+        a:link{color: green}/*未訪問*/
+        a:visited{color: red}/*訪問過*/
+        a:hover{color: yellow}/*懸停*/
+        a:active{color: pink}/*激活/點擊*/
+    </style>
+</head>
+<body>
+<a href="https://www.google.com.tw">超連結1</a>
+<a href="https://haikyu.jp">超連結2</a>
+<a href="http://www.j-haikyu.com">超連結3</a>
+<p>p1</p>
+<div><p>p2</p></div>
+<div>
+    <div><p>p3</p></div>
+    <div>
+        <p>p4</p>
+        <div><p>p5</p></div>
+    </div>
+</div>
+</body>
+</html>

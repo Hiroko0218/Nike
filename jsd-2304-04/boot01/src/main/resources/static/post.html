@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>發微博頁面</h1>
+    <input type="text" v-model="weibo.content">
+    <input type="button" value="發布" @click="post()">
+</div>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<!--引入axios框架文件-->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            weibo:{content:""}
+        },
+        methods:{
+            post(){
+               //得到當前登入用戶訊息
+               let user=localStorage.user?JSON.parse(localStorage.user):null;
+               if (user==null){
+                   location.href="/login.html";
+                   return;
+               }
+               //把當前登入的用戶id賦值為微博對象
+                v.weibo.userId = user.id;
+               //發出發微博的請求
+                axios.post("/weibo/insert",v.weibo).then(function (response) {
+                    if (response.data.code==1){
+                        alert("發布完成!");
+                        location.href="/";
+                    }else {
+                        alert("未登入");
+                        location.href="/login.html";
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>我的首頁</title>
+</head>
+<body>
+<!--
+    <h>標籤:<h1>--<h6> 一級標題--六級標題
+           標題文字加粗，各級標題字體從大到小，標題獨佔一行
+
+    <center>標籤:【後期不會使用】，將標籤中間的内容距中顯示
+
+    <input>:輸入组件，是用来獲取用戶在葉面上的輸入的
+            type屬性决定著該组件的樣式
+            常見的:
+            type="text":文本框
+            type="password":密碼框
+            type="button":按鈕
+            type="submit":提交按鈕(表單裡使用)
+
+            單選框和複選框需要使用name屬性分组，name屬性值相同的组件看做一组
+            type="radio":單選框
+            type="checkbox":複選框
+     <a>:超連結，標籤中間的文本就是超連結上提示的文字，href屬性用於指定點擊超連結後
+        跳轉的路徑。
+
+     <br>:換行
+
+     <table>: 表格。屬性border用於指定邊框。
+            <table> 標籤中包含<tr>標籤用於表示行
+            <tr> 標籤中包含<td>標籤用於表示列
+            <td> 標籤中常見屬性:
+            align: 對其方式。left左對齊,right右對齊,center距中對齊
+            colspan: 跨列合併列，合併是從左向右合併列
+            rowspan: 跨行合併列，合併是從上向下合併列
+-->
+<center>
+  <h1>Google</h1>
+  <input type="text"size="30">
+  <input type="button"value="按一下"onclick="alert('點屁點!')">
+  <br>
+  <!--
+      訪問當前首頁,在瀏覽器地址欄的路徑:
+      http://localhost:8080/index.html
+             ^^^^^^^^^^^^^^
+             定位主機地址信息
+
+      http://localhost:8080/index.html
+                           ^^^^^^^^^^^
+                           資源的抽象路徑
+
+      資源抽象路徑最開始的"/",SpringBoot默認的配置是從static機料夾下根據該路徑定位資源
+      http://localhost:8080/index.html
+                           ^
+                        static資料夾
+
+      在超連結中,如果我們定位的是本網站的其它資源時,href中指定路徑通常從"/"開始,這里的
+      "/"就是URL中資源抽象路徑中最開始的"/"
+      意味著,當我們指定超連結:
+      <a href="/reg.html">注册</a>
+      瀏覽器實際理解的路徑全稱:
+      http://localhost:8080/reg.html
+      ^^^^^^^^^^^^^^^^^^^^^
+      會沿用請求index.html時的主機地址信息
+      -->
+  <a href="/reg.html">註冊</a>
+  <a href="/login.html">登入</a>
+  <a href="/classtable.html">課程表</a>
+  <a href="/writeArticle.hmal">發表文章</a>
+  <a href="/userList">用戶列表</a>
+  <br>
+  <a href="https://codepen.io/kghjquyv-the-scripter/pen/abGRWry">我的名片</a>
+  <br>
+  <input type="radio"name="genda">男<input type="radio"name="genda">女
+  <br>
+  <input type="checkbox"name="interest">游泳
+  <input type="checkbox"name="interest">遊戲
+  <input type="checkbox"name="interest">足球
+  <br>
+  <table border="1">
+    <tr>
+      <td>第一列</td>
+      <td>第二列</td>
+      <td colspan="2"align="center">第三列</td>
+    </tr>
+    <tr>
+      <td>第一列</td>
+      <td rowspan="2">第二列</td>
+      <td>第三列</td>
+      <td>第四列</td>
+    </tr>
+    <tr>
+      <td>第一列</td>
+      <td>第三列</td>
+      <td>第四列</td>
+    </tr>
+    <tr>
+      <td>第一列</td>
+      <td>第二列</td>
+      <td>第三列</td>
+      <td>第四列</td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>

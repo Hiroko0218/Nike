@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <!--引入富文本編輯器相關css-->
+    <link href="https://cdn.staticfile.org/wangeditor5/5.1.23/css/style.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background-color: rgb(241,242,243);
+        }
+        .el-header{
+            background-color: white;
+        }
+        .center{
+            width: 1200px;
+            margin: 0 auto
+        }
+        footer h3{
+            color: white;
+        }
+        #footer_center p{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <my-header></my-header>
+        <el-main class="center" style="margin-top: 30px">
+            <el-row gutter="10">
+                <el-col span="4">
+                    <el-card style="height: 1000px">
+                        <el-menu @select="handleSelect" style="border: 0" active-text-color="orange">
+                            <el-menu-item index="1">
+                                個人信息
+                            </el-menu-item>
+                            <el-menu-item index="2">
+                                稿件管理
+                            </el-menu-item>
+                        </el-menu>
+                    </el-card>
+                </el-col>
+                <el-col span="20">
+                    <el-card>
+                        <h1 style="color: orange;font-size: 35px">{{c.id==null?'發布文章頁面':'修改文章頁面'}}
+                        </h1>
+                        <el-form label-width="80px">
+                            <el-form-item label="文章標題">
+                                <el-input placeholder="請輸入文章標題" style="width: 300px" v-model="c.title"></el-input>
+                            </el-form-item>
+                            <el-form-item label="文章分類">
+                                <el-radio-group :disabled="c.id!=null" @input="handleInput" v-model="c.type">
+                                    <el-radio-button label="1">食譜</el-radio-button>
+                                    <el-radio-button label="2">影片</el-radio-button>
+                                    <el-radio-button label="3">資訊</el-radio-button>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="二級分類">
+                                <el-select v-model="c.categoryId">
+                                    <el-option v-for="c in categoryArr"
+                                               :label="c.name" :value="c.id"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="封面">
+                                <img v-if="oldImgUrl!=''" :src="oldImgUrl"
+                                     style="width: 145px;height: 145px">
+                                <!--***************上傳组件開始******************-->
+                                <el-upload
+                                        action="/v1/upload"
+                                        name="file"
+                                        limit="1"
+                                        list-type="picture-card"
+                                        :on-preview="handlePictureCardPreview"
+                                        :on-success="handleSuccess"
+                                        :on-remove="handleRemove">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
+                                <el-dialog :visible.sync="dialogVisible">
+                                    <img width="100%" :src="dialogImageUrl" alt="">
+                                </el-dialog>
+                                <!--***************上傳组件结束******************-->
+                            </el-form-item>
+
+                            <el-form-item v-show="c.type==2" label="影片">
+                                <!--***************上傳組件開始******************-->
+                                <el-upload
+                                        action="/v1/upload"
+                                        name="file"
+                                        limit="1"
+                                        accept="video/*"
+                                        :on-preview="handlePictureCardPreview"
+                                        :on-success="handleSuccess"
+                                        :on-remove="handleRemove">
+                                    <el-button type="primary">點擊上傳</el-button>
+                                    <div>只能上傳mp4文件，且不超過100MB</div>
+                                </el-upload>
+                                <!--***************上傳組件結束******************-->
+                            </el-form-item>
+                            <el-form-item v-show="c.type!=2" label="文章内容">
+                                <!--***********富文本編輯器開始************-->
+                                <div style="border: 1px solid #ccc">
+                                    <div id="toolbar-container" style="border-bottom: 1px solid #ccc;">
+                                        <!-- 工具欄 --></div>
+                                    <div id="editor-container" style="height: 300px;"><!-- 編輯器 --></div>
+                                </div>
+                                <!--***********富文本編輯器结束************-->
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="post()">{{c.id==null?'發布文章':'修改文章'}}</el-button>
+                            </el-form-item>
+
+                        </el-form>
+
+                    </el-card>
+                </el-col>
+            </el-row>
+
+        </el-main>
+        <el-footer style="background-color: #2f3234;height: 280px;padding:50px 0">
+            <div class="center" style="color: #666; text-align: center">
+                <el-row gutter="20">
+                    <el-col span="8">
+                        <img src="imgs/icon.png">
+                        <p>教程靈感就看烘焙坊</p>
+                        <p>烘焙行業網絡社區平台</p>
+                        <p>全國百城上千個職位等你来</p>
+                    </el-col>
+                    <el-col span="8">
+                        <el-row id="footer_center">
+                            <el-col span="8">
+                                <h3>關於我們</h3>
+                                <p>關於我們</p><p>烘培學院</p>
+                                <p>烘焙食譜</p><p>分類信息</p>
+                                <p>求職招聘</p><p>社區交流</p>
+                            </el-col>
+                            <el-col span="8">
+                                <h3>支持與服務</h3>
+                                <p>聯繫我們</p><p>廣告投放</p>
+                                <p>用戶協議</p><p>友情連結</p>
+                                <p>在線反饋</p><p>我發投稿</p>
+                            </el-col>
+                            <el-col span="8">
+                                <h3>底部導航</h3>
+                                <p>Archiver</p><p>手機版</p>
+                                <p>小黑屋</p>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col span="8">
+                        <div style="font-size: 60px">
+                            <span style="color: orange">烘培</span>坊
+                        </div>
+                        <p>烘焙行業網络社區平台</p>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-footer>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<!--引入富文本編輯器相關的js文件-->
+<script src="https://cdn.staticfile.org/wangeditor5/5.1.23/index.min.js"></script>
+<!--引入axios框架文件-->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<!--引入js文件-->
+<script src="js/my-header.js"></script>
+
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                c: {
+                    title: "", type: "1", categoryId: "", imgUrl: "",
+                    content: "", videoUrl: ""
+                },
+                dialogImageUrl: '',
+                dialogVisible: false,
+                categoryArr: [],
+                oldImgUrl:""
+            }
+        },
+        methods: {
+            post() {
+                if (v.c.type==2&&v.c.videoUrl==""){
+                    v.$message.error("請選擇影片");
+                    return;
+                }
+                if (v.c.imgUrl == "") {
+                    v.$message.error("請選擇封面!");
+                    return;
+                }
+                if (v.c.categoryId == "") {
+                    v.$message.error("請選擇二級分類!");
+                    return;
+                }
+                let user = localStorage.user ? JSON.parse(localStorage.user) : null;
+                if (user != null) {
+                    v.c.createBy = user.id;//設置作者id
+                }
+                //設置摘要
+                v.c.brief = editor.getText().slice(0,50);
+                //發出發布文章請求
+                axios.post("/v1/contents/add-new",v.c).then(function (response) {
+                    if (response.data.code==1){
+                        location.href="articleManagement.html?type="+v.c.type;
+
+                    }
+                })
+
+            },
+            handleSuccess(response, file, fileList) {
+
+                console.log("file="+file.raw.type);
+                //判斷上傳的文件是圖片還是影片
+                if (file.raw.type.includes('image')){//圖片
+                    v.c.imgUrl = response.data;
+                }else{//影片
+                    v.c.videoUrl = response.data;
+                }
+
+            },
+            handleInput() {
+                v.c.categoryId = "";//去掉二级分類的選中
+                editor.setHtml("");//清空
+                // 通過type的值查詢對應的二級分類數據  /v1/categorys/1/sub
+                axios.get("/v1/categories/" + v.c.type + "/sub").then(function (response) {
+                    if (response.data.code == 1) {
+                        v.categoryArr = response.data.data;
+                    }
+                })
+            },
+            handleSelect(key, keyPath) {
+                if (key == 1) {
+                    location.href = "personal.html";
+                } else {
+                    location.href = "articleManagement.html"
+                }
+            },
+            handleRemove(file, fileList) {
+                //判斷上傳的文件是圖片還是影片
+                if (file.raw.type.includes('image')){//圖片
+                    v.c.imgUrl = "";
+                }else{//影片
+                    v.c.videoUrl = "";
+                }
+                console.log(file, fileList);
+                axios.post("/v1/remove?url=" + file.response.data).then(function (response) {
+                    if (response.data.code == 1) {
+                        v.$message.success("删除完成!");
+                    }
+                })
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            }
+
+        },
+        created: function () {
+            // 得到傳遞過來的type值
+            // location.search得到地址欄中?以及後面的內容 includes包含判斷
+            if (location.search.includes("type")) {
+                // 從 ?type=1 中得到1
+                //  created方法是Vue對象初始化過程中調用的方法，此方法中不能直接訪問v變量，
+                // 因為還未將Vue對象賦值給v變量，通過this訪問Vue對象
+                this.c.type = new URLSearchParams(location.search).get("type");
+
+                //通過type的值查詢對應的二級分類數據  /v1/categorys/1/sub
+                axios.get("/v1/categories/" + this.c.type + "/sub").then(function (response) {
+                    if (response.data.code == 1) {
+                        v.categoryArr = response.data.data;
+                    }
+                })
+
+            }
+
+            if (location.search.includes("id")){//代表修改
+                //得到地址欄中的id
+                let id = new URLSearchParams(location.search).get("id");
+                //通過id查詢詳情並顯示到頁面中
+                axios.get("/v1/contents/"+id+"/update").then(function (response) {
+                    if (response.data.code==1){
+                        v.c = response.data.data;
+                        //更新富文本編輯器内容
+                        editor.setHtml(v.c.content);
+                        //给表示原来圖片的路徑賦值
+                        v.oldImgUrl = v.c.imgUrl;
+                    }
+                })
+            }
+        }
+    })
+
+    /**********富文本編輯器相關js開始***********/
+    const {createEditor, createToolbar} = window.wangEditor
+    const editorConfig = {
+        placeholder: '請填寫文章内容...',
+        onChange(editor) {
+            const html = editor.getHtml()
+            console.log('editor content', html)
+            //html代表用戶輸入的文章内容
+            v.c.content = html;
+        }
+    }
+    const editor = createEditor({
+        selector: '#editor-container',
+        html: '<p><br></p>',
+        config: editorConfig,
+        mode: 'simple',
+    })
+    const toolbarConfig = {}
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'simple',
+    })
+    /**********富文本編輯器相關js结束***********/
+</script>
+</html>

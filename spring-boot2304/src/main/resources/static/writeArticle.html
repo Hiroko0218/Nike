@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>發表文章</title>
+</head>
+<!--
+    實現發表文章的功能
+
+    流程:
+    1:用戶在首頁點擊發表文章的超連結来到發表文章頁面
+    2:在頁面輸入文章標題和文章内容並點擊發表按钮
+    3:服務端將該文章保存後響應發表结果頁面(成功或失敗)
+
+    實現:
+    1: 在static下新建對應的頁面
+    1.1: writeArticle.html 發表文章頁面
+         頁面form表單action指定的值"/writeArticle"
+    1.2: article_success.html 發表成功提示頁面
+    1.3: article_fail.html 發表失敗提示頁面
+    2: 在controller包下新建處理文章相關的業務類: ArticleController
+       並定義處理發表文章的方法: writeArticle(HttpServletRequest request,HttpServletResponse response)
+       注意: @Controller 註解和 @RequestMapping註解不要忘記!!!!
+    3: 在entity包下新建表示文章的對象: Article並實現序列化接口
+    4: 在writeArticle方法中將表單提交上来的標題和文章内容以及作者以Article對象形式序列化到目錄articles下文件名格式:標題.obj
+       保存後響應發表成功。如果標題或内容没有輸入則響應發表失敗頁面。
+-->
+<body>
+<center>
+    <h1>發表文章</h1>
+    <br>
+    <form action="/writeArticle"method="get">
+        <table border="1">
+            <tr>
+                <td>標題</td>
+                <td><input name="title"type="text"></td>
+            </tr>
+            <tr>
+                <td>作者</td>
+                <td><input name="author"type="text"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea cols="50" rows="20" name="content"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"align="center"><input type="submit"value="發表"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>

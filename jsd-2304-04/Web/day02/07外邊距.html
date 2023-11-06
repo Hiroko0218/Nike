@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #d1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            /* 單獨某一個方向添加外邊距 */
+            margin-left: 100px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-right: 50px;
+            /* 四個方向賦值 */
+            margin: 30px;
+            /* 上下和左右賦值 */
+            margin: 50px 100px;
+            /* 上右下左顺時針賦值 */
+            margin: 10px 20px 30px 40px;
+        }
+        #d2{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            /* 外邊距塌陷問題,導致上下相鄰的兄弟元素彼此添加外邊距取最大值 */
+            margin-top: 30px;
+        }
+        #s1{margin-right: 50px;margin-bottom: 50px}
+        #s2{margin-left: 50px}
+        #big{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            /* 解决外邊距塌陷導致的黏連問題 */
+            overflow: hidden;
+        }
+        #big>div{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            margin-left: 50px;
+            /* 外邊距塌陷導致父子元素在给子元素添加上外邊距時,
+            父元素的外邊距和子元素的外邊距取最大值,
+            這樣的話就會出現父子元素黏連到一起的問題,
+            在父元素中添加overflow:hidden樣式解决此問題 */
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="big">
+    <div></div>
+</div>
+<span id="s1">span1</span><span id="s2">span2</span>
+<div id="d1">div1</div>
+<div id="d2">div2</div>
+</body>
+</html>

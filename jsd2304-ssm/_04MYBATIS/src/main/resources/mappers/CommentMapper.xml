@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Ctrl + Shift + Alt + c -->
+<!-- namespace:指定映射接口的完整路徑 -->
+<mapper namespace="cn.tedu._04mybatis.mapper.CommentMapper">
+    <!--在用戶表中插入1條數據-->
+    <!--id的屬性值必須為接口中方法的名字-->
+    <insert id="insertComment">
+        INSERT INTO comment
+        VALUES (NULL, #{content}, #{created}, #{userId}, #{weiboId})
+    </insert>
+
+    <!-- 修改評論 -->
+    <update id="updateComment">
+        UPDATE comment
+        SET content=#{content},
+            created=#{created},
+            user_id=#{userId},
+            weibo_id=#{weiboId}
+        WHERE id = #{id}
+    </update>
+
+    <sql id="deleteSql">
+        DELETE FROM comment WHERE id IN
+    </sql>
+
+    <!-- 動態刪除微博訊息-數組方式 -->
+    <!-- <foreach>標籤
+      collection 屬性：需要遍歷的對象類型,數组為array，集合為list
+      item 屬性：遍歷出每個元素的變量名稱
+      separator 屬性：不同元素間的分隔符(一切以SQL語法為準)
+     -->
+    <!--include標籤：引用重複的sql，利用refid屬性-->
+    <delete id="deleteComment1">
+        <include refid="deleteSql"></include> (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+            )
+    </delete>
+
+    <!-- 動態刪除微博訊息-List方式 -->
+    <!-- <foreach>標籤
+      collection 屬性：需要遍歷的對象類型,數组為array，集合為list
+      item 屬性：遍歷出每個元素的變量名稱
+      separator 屬性：不同元素間的分隔符(一切以SQL語法為準)
+     -->
+    <!--include標籤：引用重複的sql，利用refid屬性-->
+    <delete id="deleteComment2">
+        <include refid="deleteSql"></include> (
+            <foreach collection="list" item="id" separator=",">
+                #{id}
+            </foreach>
+            )
+    </delete>
+
+    <!--動態修改評論數據-->
+    <!--
+        UPDATE comment SET
+        content=#{content},
+        created=#{created},
+        user_id=#{userId},
+        weibo_id=#{weiboId}
+        WHERE id=#{id}
+    -->
+    <update id="updateComment1">
+        UPDATE comment
+    <set>
+        <if test="content!=null">content=#{content},</if>
+        <if test="created!=null">created=#{created},</if>
+        <if test="userId!=null">user_id=#{userId},</if>
+        <if test="weiboId!=null">weibo_id=#{weiboId}</if>
+    </set>
+    WHERE id=#{id}
+    </update>
+
+    <select id="selectComment" resultType="cn.tedu._04mybatis.pojo.CommentVO">
+        SELECT c.id, c.content, c.created, u.nickname
+        FROM comment c
+                 JOIN user u ON c.user_id = u.id
+        WHERE c.weibo_id = #{wid}
+    </select>
+
+</mapper>

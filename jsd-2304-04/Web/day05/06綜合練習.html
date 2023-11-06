@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td{width: 100px}
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr><td>照片:</td><td id="head_td"></td></tr>
+    <tr><td>姓名:</td><td id="name_td"></td></tr>
+    <tr><td>年齡:</td><td id="age_td"></td></tr>
+    <tr><td>好友:</td><td id="friends_td"></td></tr>
+</table>
+<input type="button" value="加載數據" onclick="f()">
+<script>
+    function f(){
+        //得到頁面中的td
+        let headTd = document.querySelector("#head_td");
+        let nameTd = document.querySelector("#name_td");
+        let ageTd = document.querySelector("#age_td");
+        let friendsTd = document.querySelector("#friends_td");
+
+        // 服務器響應的内容如果是一個自訂義Java對象,
+        // 客戶端接收到的數據用一個自定義的JS對象保存
+        let person = {name:"傳奇哥",age:18,url:"fcq.jpg",friends:["貂蟬","武則天","西施"]};
+
+        //把從服務器得到的數據 展示到頁面中
+        nameTd.innerText = person.name;
+        ageTd.innerText = person.age;
+
+        //創建圖片標籤
+        let img = document.createElement("img");
+        img.src = person.url;
+        img.width=100;
+        headTd.append(img);
+
+        //創建無序列表
+        let ul = document.createElement("ul");
+        for (let friend of person.friends) {
+            let li = document.createElement("li");
+            li.innerText = friend;
+            ul.append(li);
+        }
+        friendsTd.append(ul);
+    }
+</script>
+</body>
+</html>

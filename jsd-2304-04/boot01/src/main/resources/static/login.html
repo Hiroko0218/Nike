@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text" placeholder="用戶名" v-model="user.username">
+    <input type="password" placeholder="密碼" v-model="user.password">
+    <input type="button" value="登入" @click="login()">
+</div>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<!--引入axios框架文件-->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            user:{username:"",password:""}
+        },
+        methods:{
+            login(){
+                //發出異步請求
+                axios.post("/login",v.user).then(function (response) {
+                    if (response.data.code==1){
+                        // alert("登入成功!,歡迎"+response.data.data.nickname+"回來!");
+                        //把當前登入的用戶信息保存到localStorage
+                        //localStorage只能保存字符串類型,此時服務器響應回来的是CustomUserDetails對象
+                        //需要將對象轉成JSON格式的字符串
+                        localStorage.setItem("user",JSON.stringify(response.data.data));
+                        //跳轉至首頁
+                        location.href="/";
+                    }else if(response.data.code==1002){
+                        alert("密碼錯誤!");
+                    }else{
+                        alert("用戶名不存在!");
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

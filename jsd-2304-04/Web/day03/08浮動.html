@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body>div{
+            width: 200px;
+            border: 1px solid red;
+            /*
+            如果某個元素的所有子元素全部浮动側自動識別的高度為0
+            後面的元素會頂上来,出現元素層疊(層疊内容有文本的話會把文本擠到後面)
+            给元素添加overflow:hidden解决
+            */
+            overflow: hidden;
+        }
+        div>div{
+            width: 50px;
+            height: 50px;
+        }
+        #d1{
+            background-color: red;
+            float: left;
+        }
+        #d2{
+            background-color: green;
+            float: left;
+        }
+        #d3{
+            background-color: blue;
+            float: left;
+        }
+        ul{
+            /* 去掉圖標 */
+            list-style-type: none;
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="">首頁</a></li>
+    <li><a href="">免費課</a></li>
+    <li><a href="">直播課</a></li>
+    <li><a href="">精品課</a></li>
+    <li><a href="">線上班</a></li>
+</ul>
+<div>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+</div>
+<p>這是p標篇</p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <caption>個人信息</caption>
+        <tr>
+            <td>照片:</td><td><img :src="p.url" width="100"></td>
+        </tr>
+        <tr><td>名字:</td><td>{{p.name}}</td></tr>
+        <tr><td>年齡:</td><td>{{p.age}}</td></tr>
+        <tr><td>好友:</td><td><ul>
+            <li v-for="name in p.friends">{{name}}</li>
+        </ul></td></tr>
+    </table>
+    <input type="button" value="加載數據" @click="f()">
+</div>
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            p:{name:"",age:"",url:"",friends: []}
+        },
+        methods:{
+            f(){
+                v.p = {name:"傳奇哥",age:18,url:"../day05/fcq.jpg",friends:["貂蟬","武則天","西施"]};
+            }
+        }
+    })
+</script>
+</body>
+</html>

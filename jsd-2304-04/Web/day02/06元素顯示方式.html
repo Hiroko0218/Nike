@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        span{
+            border: 1px solid blue;
+            width: 100px;
+            height: 100px;
+            /* 行内元素寬高是不能修改的,如果必須改則將display改成block或inline-block */
+            display: inline-block;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            /* 隱藏元素 */
+            display: none;
+        }
+        a{
+            background-color: #0aa1ed;
+            width: 132px;
+            height: 40px;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<a href="">查看詳情</a>
+<img src="../haikyu2.jpg">
+<img src="../haikyu2.jpg">
+<img src="../haikyu2.jpg">
+<div>div1<br>div1</div>
+<div>div2</div>
+<div>div3</div>
+<span>span1</span>
+<span>span2</span>
+<span>span3</span>
+</body>
+</html>

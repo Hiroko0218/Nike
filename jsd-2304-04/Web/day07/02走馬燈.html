@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <style>
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 150px;
+            margin: 0;
+        }
+
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <template>
+        <div class="block">
+            <span class="demonstration">默認 Hover 指示器觸發</span>
+            <el-carousel height="150px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                    <h3 class="small">{{ item }}</h3>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+        <div class="block">
+            <span class="demonstration">Click 指示器觸發</span>
+            <el-carousel trigger="click" height="150px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                    <h3 class="small">{{ item }}</h3>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+    </template>
+    <h3>圖片輪播</h3>
+    <div style="width: 300px">
+        <el-carousel height="150px">
+            <el-carousel-item v-for="item in 3">
+                <img src="../haikyu2.jpg" width="100%" height="100%" >
+            </el-carousel-item>
+        </el-carousel>
+    </div>
+
+    <h3>不一樣的圖片</h3>
+    <el-carousel height="150px" :interval="1000" type="card">
+        <el-carousel-item v-for="item in 3">
+            <img :src="'imgs/banner'+item+'.jpg'" width="100%" height="100%">
+        </el-carousel-item>
+    </el-carousel>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+
+            }
+        },
+        methods: {
+
+        }
+    })
+</script>
+</html>

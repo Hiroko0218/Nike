@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用戶註冊</title>
+</head>
+<body>
+<center>
+    <h1>用戶註冊</h1>
+    <!--
+      form標籤:表單,用於將頁面上用戶輸入的信息整體提交给服務端
+              form會將它包含的所有輸入组件信息提交给無誤端.
+
+              form有兩個重要的屬性:
+              action:用来指定表單提交到哪里去
+              method:用来指定表單提交的方式,方式有兩種
+                     GET: 地址欄形式提交,form數據會體現在瀏覽器地址欄中
+                     POST: 打包提交,form數據會被包含在請求的消息正文中
+                     method屬性可以不指定,不指定時默認為GET形式提交表單.
+    -->
+    <!--  http://localhost:8080/regUser
+          http://localhost:8080/regUser?
+          http://localhost:8080/regUser?username=范傳奇&password=123456&nickname=傳奇&age=22
+    -->
+    <form action="/regUser" method="get">
+        <table border="2">
+            <tr>
+                <td>用戶名</td>
+                <td><input name="username" type="text"></td>
+            </tr>
+            <tr>
+                <td>密碼</td>
+                <td><input name="password" type="password"></td>
+            </tr>
+            <tr>
+                <td>暱稱</td>
+                <td><input name="nickname" type="text"></td>
+            </tr>
+            <tr>
+                <td>年齡</td>
+                <td><input name="age" type="number"></td>
+            </tr>
+            <tr>
+                <td colspan="2"align="center">
+                    <!-- submit 提交按钮，用於將包含它的表單進行提交 -->
+                    <input type="submit" value="註冊">
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>

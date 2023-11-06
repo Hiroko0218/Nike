@@ -1,0 +1,22 @@
+POST http://localhost:8080/address/update
+Content-Type: application/x-www-form-urlencoded
+
+id=1&address=新莊
+
+###
+POST http://localhost:8080/address/delete
+Content-Type: application/x-www-form-urlencoded
+
+id=3
+
+###
+GET http://localhost:8080/address/select
+Accept: application/json
+
+###
+POST http://localhost:8080/address/insert
+Content-Type: application/x-www-form-urlencoded
+
+receiver=哈哈哈&address=三重&email=coco123&mobile=125936478&tag=1
+
+###

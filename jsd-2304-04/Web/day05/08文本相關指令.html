@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    {{info}}
+    <!--插值:讓此處的文本内容和變量進行绑定-->
+    <p>{{info}}</p>
+    <!--v-text="變量" 讓元素的文本内容和變量進行绑定-->
+    <p v-text="info"></p>
+    <!--v-html="變量" 讓元素的html標籤内容和变量進行绑定-->
+    <p v-html="info"></p>
+
+</div>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"文本相關指令<b>加粗</b>"
+        }
+    })
+</script>
+</body>
+</html>

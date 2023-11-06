@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu._04mybatis.mapper.WeiboMapper">
+    <insert id="interweibo">
+        INSERT INTO weibo
+        VALUES (NULL, #{content}, #{created}, #{userId})
+    </insert>
+
+    <!--根據id查詢微博信息-->
+    <!--resultType屬性：只在select標籤中使用,表明查詢結果的封装對象-->
+    <select id="selectWeiboById" resultType="cn.tedu._04mybatis.pojo.Weibo">
+        SELECT content, created, user_id userId
+        FROM weibo
+        WHERE id = #{id}
+    </select>
+
+    <!--查詢所有微博信息-->
+    <select id="selectWeiboIndex" resultType="cn.tedu._04mybatis.pojo.Weibo">
+        SELECT content, created, user_id userId
+        FROM weibo
+    </select>
+
+    <!--删除指定微博的信息-->
+    <delete id="deleteWeiboById">
+        DELETE
+        FROM weibo
+        WHERE id = #{id}
+    </delete>
+
+    <!--修改微博信息-->
+    <!-- 格式化語句：Ctrl + Alt + l -->
+    <update id="updateWeiboById">
+        UPDATE weibo
+        SET content=#{content},
+            created=#{created},
+            user_id=#{userId}
+        WHERE id = #{id}
+    </update>
+    
+    <select id="selectIndex" resultType="cn.tedu._04mybatis.pojo.WeiboIndexVO">
+        SELECT w.id,w.content,u.nickname,w.created
+        FROM weibo w
+            JOIN user u ON w.user_id =u.id
+    </select>
+    
+    <!--
+            根據微博的id查詢該條微博的信息，只顯示：微博編號id、内容content、用戶編號user_id
+            resultMap示例
+            1.id屬性：唯一標示
+            2.type：指定映射的JAVA類型
+            3.<id>標籤：映射主鍵字段
+            4.<result>標籤：映射非主鍵字段
+            5.column屬性：查詢語句中的列名(别名)
+            6.property屬性：java中的屬性名
+        -->
+
+    <resultMap id="aaa" type="cn.tedu._04mybatis.pojo.WeiboMapVO1">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <select id="selectMapById" resultMap="aaa">
+        SELECT id,content,user_id FROM weibo WHERE id=#{wid}
+    </select>
+
+    <!--
+        查詢指定的用戶發佈的所有微博信息，要求將微博信息放到一個集合中，
+        要求顯示：用戶的 id、用戶暱稱、List<Weibo>集合
+        resultMap示例
+        1.id屬性：唯一標示
+        2.type：指定映射的JAVA類型
+        3.<id>標籤：映射主鍵字段
+        4.<result>標籤：映射非主鍵字段
+        5.column屬性：查詢語句中的列名(别名)
+        6.property屬性：java中的屬性名
+        7.<collection>標籤：映射一對多或多對多關係
+        8.ofType屬性：集合中元素的類型
+    -->
+    <resultMap id="ccc" type="cn.tedu._04mybatis.pojo.WeiboMapVO2">
+        <id column="id" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <collection property="weibos" ofType="cn.tedu._04mybatis.pojo.Weibo">
+            <id column="wid" property="id"/>
+            <result column="content" property="content"/>
+            <result column="created" property="created"/>
+            <result column="user_id" property="userId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectMapByUserId" resultMap="ccc">
+        SELECT u.id,
+               u.nickname,
+               w.id wid,
+               w.content,
+               w.created,
+               w.user_id
+        FROM user u
+                 JOIN weibo w ON w.user_id = u.id
+        WHERE u.id = #{uid}
+    </select>
+</mapper>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        body{
+            background-color: rgb(241,242,243);
+        }
+        .el-header{
+            background-color: white;
+        }
+        .center{
+            width: 1200px;margin: 0 auto
+        }
+        #footer_center h3{
+            color: white;
+        }
+        #footer_center p{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header height="80px">
+            <div class="center">
+                <el-row gutter="20">
+                    <el-col span="6">
+                        <img src="imgs/icon.png" width="196" height="65">
+                    </el-col>
+                    <el-col span="10">
+                        <el-menu mode="horizontal" active-text-color="orange">
+                            <el-menu-item index="0">首頁</el-menu-item>
+                            <el-menu-item index="1">食譜</el-menu-item>
+                            <el-menu-item index="2">影片</el-menu-item>
+                            <el-menu-item index="3">資訊</el-menu-item>
+                        </el-menu>
+                    </el-col>
+                    <el-col span="6">
+                        <el-input style="position: relative;top: 15px" placeholder="請輸入搜索關鍵字">
+                            <el-button slot="append" icon="el-icon-search"></el-button>
+                        </el-input>
+                    </el-col>
+                    <el-col span="2">
+                        <el-popover
+                                placement="top-start"
+                                title="歡迎來到烘培坊"
+                                width="200"
+                                trigger="hover">
+                            <div slot="reference">
+                                <i style="font-size: 30px;position: relative;top: 20px" class="el-icon-user"></i>
+                            </div>
+                            <el-button type="info">註冊</el-button>
+                            <el-button type="warning">登入</el-button>
+                        </el-popover>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-header>
+        <el-main class="center" style="margin-top: 30px">
+            <el-row gutter="10">
+                <el-col span="4">
+                    <el-card style="height: 1000px">
+                        <el-menu @select="handleSelect" style="border: 0" default-active="2" active-text-color="orange">
+                            <el-menu-item index="1">
+                                個人信息
+                            </el-menu-item>
+                            <el-menu-item index="2">
+                                稿件管理
+                            </el-menu-item>
+                        </el-menu>
+                    </el-card>
+                </el-col>
+
+                <el-col span="20">
+                    <el-card>
+                        <el-tabs type="border-card">
+                            <el-tab-pane label="食譜">
+                                <el-button type="primary" @click="location.href='postArticle.html'">發佈食譜</el-button>
+                                <el-table :data="contentArr" border>
+                                    <el-table-column label="標題" align="center"
+                                                     width="150px" prop="title"></el-table-column>
+                                    <el-table-column width="60px" label="封面">
+                                        <template slot-scope="scope">
+                                            <img :src="scope.row.imgUrl" width="50px">
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="摘要" width="300px"
+                                                     prop="brief" align="center"></el-table-column>
+                                    <el-table-column label="類型" prop="categoryName"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="瀏覽量" prop="viewCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="回復量" prop="commentCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="創建時間" prop="createTime"
+                                                     align="center"></el-table-column>
+
+                                    <el-table-column label="操作" width="200px" align="center" fixed="right">
+                                        <template slot-scope="scope">
+                                            <el-button size="mini" type="success">編輯</el-button>
+                                            <el-button size="mini" type="danger">删除</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+
+
+                            <el-tab-pane label="影片">
+                                <el-button type="primary" @click="location.href='postArticle.html'">發佈影片</el-button>
+                                <el-table :data="contentArr" border>
+                                    <el-table-column label="標題" align="center"
+                                                     width="150px" prop="title"></el-table-column>
+                                    <el-table-column width="60px" label="封面">
+                                        <template slot-scope="scope">
+                                            <img :src="scope.row.imgUrl" width="50px">
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="摘要" width="300px"
+                                                     prop="brief" align="center"></el-table-column>
+                                    <el-table-column label="類型" prop="categoryName"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="瀏覽量" prop="viewCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="回復量" prop="commentCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="創建時間" prop="createTime"
+                                                     align="center"></el-table-column>
+
+                                    <el-table-column label="操作" width="200px" align="center" fixed="right">
+                                        <template slot-scope="scope">
+                                            <el-button size="mini" type="success">編輯</el-button>
+                                            <el-button size="mini" type="danger">删除</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+
+
+                            <el-tab-pane label="資訊">
+                                <el-button type="primary" @click="location.href='postArticle.html'">發佈資訊</el-button>
+                                <el-table :data="contentArr" border>
+                                    <el-table-column label="標題" align="center"
+                                                     width="150px" prop="title"></el-table-column>
+                                    <el-table-column width="60px" label="封面">
+                                        <template slot-scope="scope">
+                                            <img :src="scope.row.imgUrl" width="50px">
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="摘要" width="300px"
+                                                     prop="brief" align="center"></el-table-column>
+                                    <el-table-column label="類型" prop="categoryName"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="瀏覽量" prop="viewCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="回復量" prop="commentCount"
+                                                     align="center"></el-table-column>
+                                    <el-table-column label="創建時間" prop="createTime"
+                                                     align="center"></el-table-column>
+
+                                    <el-table-column label="操作" width="200px" align="center" fixed="right">
+                                        <template slot-scope="scope">
+                                            <el-button size="mini" type="success">編輯</el-button>
+                                            <el-button size="mini" type="danger">删除</el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+
+                        </el-tabs>
+                    </el-card>
+                </el-col>
+            </el-row>
+
+        </el-main>
+        <el-footer style="background-color: #2f3234;height: 280px;padding:50px 0">
+            <div class="center" style="text-align: center;color: #666">
+                <el-row gutter="20">
+                    <el-col span="8">
+                        <img src="imgs/icon.png">
+                        <p>教程靈感就看烘焙坊</p>
+                        <p>烘焙行業網絡社區平台</p>
+                        <p>全國百城上千個職位等你来</p>
+                    </el-col>
+                    <el-col span="8">
+                        <el-row gutter="20" id="footer_center">
+                            <el-col span="8">
+                                <h3>關於我們</h3>
+                                <p>關於我們</p><p>烘培學院</p>
+                                <p>烘焙食譜</p><p>分類信息</p>
+                                <p>求職招聘</p><p>社區交流</p>
+                            </el-col>
+                            <el-col span="8">
+                                <h3>支持與服務</h3>
+                                <p>聯繫我們</p><p>廣告投放</p>
+                                <p>用戶協議</p><p>友情連結</p>
+                                <p>在線反饋</p><p>我發投稿</p>
+                            </el-col>
+                            <el-col span="8">
+                                <h3>底部導航</h3>
+                                <p>Archiver</p><p>手機版</p>
+                                <p>小黑屋</p>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col span="8">
+                        <div style="font-size: 58px;margin-top: 30px">
+                            <span style="color: orange">烘培</span><span style="color: #666666">坊</span>
+                        </div>
+                        <p>烘焙行業網络社區平台</p>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-footer>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                dialogImageUrl: '',
+                dialogVisible: false,
+                contentArr:[
+                    {
+                        "id":11,
+                        "title":"入口即酥的超濃花生醬酥餅a",
+                        "brief":"花生醬+花生油=超濃郁花生香 没有糖粉，用了白砂糖 本是入口即酥 卻又在酥後留下些許顆粒感 花生濃香",
+                        "imgUrl":"imgs/a.jpg",
+                        "type":1,
+                        "categoryName":"家常菜",
+                        "viewCount":8,
+                        "commentCount":0,
+                        "createTime":"2023/03/27 19:51:45"
+                    },
+                    {
+                        "id":12,
+                        "title":"棗泥花式面包,好吃到爆",
+                        "brief":"之前做了棗泥餡，配上花式面包，好吃到爆。 棗泥花式面包的用料 肉鬆面包面團 見肉鬆面包配方，棗泥",
+                        "imgUrl":"imgs/b.jpg",
+                        "type":1,
+                        "categoryName":"面包",
+                        "viewCount":1,
+                        "commentCount":0,
+                        "createTime":"2023/03/28 16:12:42"
+                    },
+                    {
+                        "id":13,
+                        "title":"酥脆培根吐司芝士卷，人見人愛",
+                        "brief":"人見人愛的培根平時一般都是放吐司里面做三文治吃今天培根要露臉啦哈哈哈哈简单快手酥脆可口的培根吐司芝士",
+                        "imgUrl":"imgs/c.jpg",
+                        "type":1,
+                        "categoryName":"家常菜",
+                        "viewCount":1,
+                        "commentCount":0,
+                        "createTime":"2023/03/28 16:15:43"
+                    },
+                    {
+                        "id":14,
+                        "title":"開放式三明治,一份小清新快手早餐",
+                        "brief":" 昨夜下了很怕人的驟雨，清晨辦公桌上的薄荷微微抖動它的葉子。一份小清新快手早餐，让生活简洁不简单。 ",
+                        "imgUrl":"imgs/d.jpg",
+                        "type":1,
+                        "categoryName":"小食",
+                        "viewCount":1,
+                        "commentCount":0,
+                        "createTime":"2023/03/28 16:16:24"
+                    },
+                    {
+                        "id":15,
+                        "title":"核桃葡萄乾軟歐：蔓越莓種面",
+                        "brief":"乾，来款核桃葡萄乾軟歐吧！核桃是個寶，好處太多，不一一列舉啦00！ 蔓越莓种面的用料 主面团， 蔓越",
+                        "imgUrl":"imgs/a.jpg",
+                        "type":1,
+                        "categoryName":"面包",
+                        "viewCount":2,
+                        "commentCount":0,
+                        "createTime":"2023/03/28 16:16:56"
+                    },
+                    {
+                        "id":16,
+                        "title":"蔓越莓綠豆糕，味道還不错值得一試!",
+                        "brief":"全家都很喜歡吃綠豆糕，但楼下甜品店的綠豆糕太甜了，那就自己動手做吧。之前嘗試過帶皮綠豆，顏色做出来沒",
+                        "imgUrl":"imgs/b.jpg",
+                        "type":1,
+                        "categoryName":"面包",
+                        "viewCount":4,
+                        "commentCount":0,
+                        "createTime":"2023/03/28 16:17:35"
+                    },
+                    {
+                        "id":17,
+                        "title":"心形火龍果椰蓉面包,任誰都抗拒不了",
+                        "brief":"椰蓉的香味 任誰都抗拒不了吧正好还有半個红心火龍果做成了***嫩的小愛心面包可爱又好吃可以做9個。 ",
+                        "imgUrl":"imgs/c.jpg",
+                        "type":1,
+                        "categoryName":"小食",
+                        "viewCount":15,
+                        "commentCount":1,
+                        "createTime":"2023/03/28 16:18:12"
+                    },
+                    {
+                        "id":18,
+                        "title":"爆漿抹茶甜甜圈面包，自带幸福感的小甜甜",
+                        "brief":"爆漿抹茶甜甜圈面包好吃的起飛的爆漿抹茶甜甜圈，從裡到外被抹茶包裹著，自带幸福感的小甜甜，抹茶控們完全",
+                        "imgUrl":"imgs/d.jpg",
+                        "type":1,
+                        "categoryName":"家常菜",
+                        "viewCount":15,
+                        "commentCount":1,
+                        "createTime":"2023/03/28 16:20:26"
+                    }
+                ]
+            }
+        },
+        methods: {
+            handleSelect(key,keyPath){
+                if (key==1){
+                    location.href="personal.html";
+                }
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            }
+        }
+    })
+</script>
+</html>

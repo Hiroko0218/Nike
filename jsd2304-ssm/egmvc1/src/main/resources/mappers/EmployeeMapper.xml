@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.egmvc1.mapper.EmpMapper">
+
+    <!--添加員工-->
+    <insert id="insertEmp">
+        INSERT INTO emp VALUES (NULL,#{title},#{salary},#{job})
+    </insert>
+
+    <!--查詢員工列表-->
+    <select id="selectEmpList" resultType="cn.tedu.egmvc1.pojo.entity.Employee">
+        SELECT *FROM emp;
+    </select>
+
+    <!--更新員工資訊-->
+    <update id="empUpdate">
+        UPDATE emp
+        <set>
+            <if test="title!=null">title=#{title},</if>
+            <if test="salary!=null">salary=#{salary},</if>
+            <if test="job!=null">job=#{job}</if>
+        </set>
+    WHERE id=#{id}
+    </update>
+
+    <!--删除用戶-->
+    <delete id="empDelete">
+        DELETE FROM emp WHERE id = #{id};
+    </delete>
+</mapper>

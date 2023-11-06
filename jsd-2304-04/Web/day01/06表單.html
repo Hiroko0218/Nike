@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--action設置提交地址-->
+<form action="https://www.google.com.tw">
+    <!--控件: form表單中用於獲取用戶輸入信息的元素稱為控件-->
+    <!--所有的控件都必須有name屬性 否則不會傳遞此參數-->
+    <!--placeholder占位文本 (預設值)
+    maxlength最大字符長度
+    value設置控件的值
+    readonly設置為只讀
+    checked 預設值-->
+    用戶名:<input type="text" value="tom" readonly
+               maxlength="5" name="username" placeholder="用戶名"><br>
+    密碼:<input type="password" name="password" placeholder="密碼"><br>
+
+    <!--value屬性是單選控件必須添加的屬性否則提交on-->
+    性别:<input type="radio" name="gender"
+              value="m" id="r1"><label for="r1">男</label>
+    <input type="radio" name="gender" checked
+           value="w" id="r2"><label for="r2">女</label><br>
+
+    <!--多選框/複選框-->
+    興趣愛好:<input type="checkbox" name="hobby" value="cj">睡覺
+    <input type="checkbox" name="hobby" value="fd">發呆
+    <input type="checkbox" name="hobby" checked value="jj">追劇<br>
+
+    <!--日期選擇器-->
+    生日:<input type="date" name="birthday"><br>
+
+    <!--文件選擇器-->
+    靓照:<input type="file" name="pic"><br>
+
+    所在地:
+    <select name="city">
+        <option value="bj">北京</option>
+        <option selected>上海</option>
+        <option>廣州</option>
+    </select><br>
+
+    <!--自定義按鈕-->
+    <hr>
+    <button type="submit" value="註冊">註冊</button>
+    <button type="reset">重置</button>
+    <button type="button" value="按鈕">按鈕</button>
+</form>
+</body>
+</html>

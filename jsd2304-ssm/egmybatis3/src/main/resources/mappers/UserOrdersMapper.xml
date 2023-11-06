@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.egmybatis3.mapper.UserOrdersMapper">
+    <sql id="selectSql">
+        SELECT order_id orderId, cust_id custId, order_date orderDate, status, products_num productsNum, amt
+        FROM user_orders
+    </sql>
+
+    <select id="selectOrders" resultType="cn.tedu.egmybatis3.pojo.UserOrders">
+        <include refid="selectSql"></include>
+    </select>
+
+    <select id="selectByStatus" resultType="cn.tedu.egmybatis3.pojo.UserOrders">
+        <include refid="selectSql"></include>
+        WHERE status =#{status}
+    </select>
+
+    <select id="selectUserOrders" resultType="cn.tedu.egmybatis3.pojo.OrdersVO">
+        SELECT c.cust_name custName,
+               c.address,
+               u.order_id  orderId,
+               u.status,
+               u.amt
+        FROM user_orders u
+                 JOIN customers c ON u.cust_id = c.cust_id
+        WHERE c.cust_id = #{userId}
+    </select>
+
+    <!--
+         查詢指定的用戶發佈的所有微博信息，要求將微博信息放到一個集合中，
+         要求顯示：用戶的 id、用戶暱稱、List<Weibo>集合
+         resultMap示例
+         1.id屬性：唯一標示
+         2.type：指定映射的JAVA類型
+         3.<id>標籤：映射主鍵字段
+         4.<result>標籤：映射非主鍵字段
+         5.column屬性：查詢語句中的列名(别名)
+         6.property屬性：java中的屬性名
+         7.<collection>標籤：映射一對多或多對多關係
+         8.ofType屬性：集合中元素的類型
+    -->
+    <resultMap id="ddd" type="cn.tedu.egmybatis3.pojo.UserOrdersMapVO">
+        <id column="cust_id" property="custId"/>
+        <result column="cust_name" property="custName"/>
+        <result column="address" property="address"/>
+        <collection property="userOrdersList" ofType="cn.tedu.egmybatis3.pojo.UserOrders">
+            <id column="order_id" property="orderId"/>
+            <result column="uid" property="custId"/>
+            <result column="order_date" property="orderDate"/>
+            <result column="status" property="status"/>
+            <result column="products_num" property="productsNum"/>
+            <result column="amt" property="amt"/>
+        </collection>
+    </resultMap>
+    <select id="selectUserOrdersMap" resultMap="ddd">
+        SELECT c.cust_id,
+               c.cust_name,
+               c.address,
+               u.order_id,
+               u.cust_id uid,
+               u.order_date,
+               u.status,
+               u.products_num,
+               u.amt
+        FROM customers c JOIN user_orders u
+                              ON c.cust_id = u.cust_id
+        WHERE c.cust_id = #{cid}
+    </select>
+</mapper>

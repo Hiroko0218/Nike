@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="_01mariadb" />
+        <module name="egmvc1" />
+        <module name="_04MYBATIS" />
+        <module name="egmvc2" />
+        <module name="_03SPRING" />
+        <module name="_051MVC-BOOT01" />
+        <module name="_02JDBC" />
+        <module name="egmybatis1" />
+        <module name="egmybatis2" />
+        <module name="egmybatis3" />
+        <module name="_052MVC-BOOT02" />
+        <module name="_053MVC-WEIBO" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="_04MYBATIS" options="-parameters" />
+      <module name="_051MVC-BOOT01" options="-parameters" />
+      <module name="_052MVC-BOOT02" options="-parameters" />
+      <module name="_053MVC-WEIBO" options="-parameters" />
+      <module name="egmvc1" options="-parameters" />
+      <module name="egmvc2" options="-parameters" />
+      <module name="egmybatis1" options="-parameters" />
+      <module name="egmybatis2" options="-parameters" />
+      <module name="egmybatis3" options="-parameters" />
+    </option>
+  </component>
+</project>
