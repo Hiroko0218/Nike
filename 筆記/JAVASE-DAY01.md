@@ -63,8 +63,7 @@
   		input = input.trim();
 
   		//3. 並且是以 http:// 或者 https:// 開頭，以.com 結束 && 與
-  		if(!input.startsWith("http://") ||
-  !input.startsWith("https://") && !input.endsWith(".com")){
+  		if(!input.startsWith("http://") || !input.startsWith("https://") && !input.endsWith(".com")){
   				return false;
   		}
   		//4.不允許包含特殊的字符（&，#，？）
