@@ -13,7 +13,7 @@ java將IO分為了兩類
   - 目的:當數據經過當前高級流時可以對數據進行某種加工操作，來簡化我們的同等操作
   - 實際開發中我們經常"串聯"一組高級流最終到某個低級流上，使讀寫數據以流水線式的加工處理完成。這一操作也被稱為使"**流的鏈接**"。流鏈接也是JAVA IO的精髓所在。
 
-![image-20230407153806204](images\image-20230407153806204.png)
+![image-20230407153806204](images/image-20230407153806204.png)
 
 
 
@@ -55,7 +55,7 @@ java.io.**BufferedInputStream**和**BufferedOutputStream**
 
 ##### 例
 
-![image-20230407161834833](images\image-20230407161834833.png)
+![image-20230407161834833](images/image-20230407161834833.png)
 
 ```java
 package io;
@@ -100,7 +100,7 @@ public class CopyDemo3 {
 
 
 
-![image-20230407161614887](images\image-20230407161614887.png)
+![image-20230407161614887](images/image-20230407161614887.png)
 
 ##### 寫緩沖問題
 
@@ -143,7 +143,7 @@ flush()方法是被定義在java.io.Flushable中。而字節輸出流的超類ja
 
 該接口，這意味著所有的字節輸出流都有flush方法。而除了緩沖流之外的高級流的flush方法作用就是調用它鏈接的流的flush方法將該動作傳遞下去。最終傳遞給緩沖流來清空緩沖區。
 
-![image-20230407165626434](images\image-20230407165626434.png)
+![image-20230407165626434](images/image-20230407165626434.png)
 
 
 
@@ -180,7 +180,7 @@ void writeObject(Object obj)
 
 ##### 例:
 
-![image-20230407181727265](images\image-20230407181727265.png)
+![image-20230407181727265](images/image-20230407181727265.png)
 
 ```java
 package io;
@@ -289,11 +289,11 @@ public class OISDemo {
 
 如果該對象不需要序列化，那麽該關鍵字不發揮其他任何效果
 
-![image-20230410093231602](images\image-20230410093231602.png)
+![image-20230410093231602](images/image-20230410093231602.png)
 
 序列化時不包含otherInfo屬性，並且反序列化時該屬性值為null
 
-![image-20230410093312177](images\image-20230410093312177.png)
+![image-20230410093312177](images/image-20230410093312177.png)
 
 
 
@@ -360,7 +360,7 @@ OutputStreamWriter(OutputStream out)
 
 示意
 
-![image-20230410095709564](images\image-20230410095709564.png)
+![image-20230410095709564](images/image-20230410095709564.png)
 
 
 
@@ -452,7 +452,7 @@ public class ISRDemo {
 
 ##### 工作原理
 
-![image-20230410110048127](images\image-20230410110048127.png)
+![image-20230410110048127](images/image-20230410110048127.png)
 
 **特點**
 
@@ -668,7 +668,7 @@ public class BRDemo {
 
 ### IO總結
 
-![image-20230410144010203](images\IO總結.png)
+![image-20230410144010203](images/IO總結.png)
 
 ## 總結
 
