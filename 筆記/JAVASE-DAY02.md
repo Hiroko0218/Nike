@@ -58,7 +58,7 @@ Integer integerObj = num; // 自動裝箱
 
 ​	[ ] 用於描述單一字符，方括號內部可以定義這個字符的內容，也可以描述一個範圍
 
-![1](/Users/hiroko/Downloads/筆記/images/1.png)
+![1](/筆記/images/1.png)
 
 - 預定義字符
 
