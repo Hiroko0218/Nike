@@ -67,7 +67,7 @@ Integer integerObj = num; // 自動裝箱
 
 ​	" \ " 在正則表達式中是轉義字符，當我們需要描述一個已經被正則表達式使用的特殊字符時，我們就可以使用 " \ " 將其轉變為原本的意思
 
-![2](/Users/hiroko/Downloads/筆記/images/2.png)
+![2](/筆記/images/2.png)
 
 - 數量詞
 
