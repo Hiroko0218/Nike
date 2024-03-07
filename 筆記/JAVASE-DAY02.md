@@ -84,7 +84,9 @@ Integer integerObj = num; // 自動裝箱
 
 ​		{ n, }：表示內容出現至少 n 次
 
-​		{ n,m }：表示內容出現n-m 次![3](/Users/hiroko/Downloads/筆記/images/3.png)
+​		{ n,m }：表示內容出現n-m 次
+
+![3](/筆記/images/3.png)
 
 ### **2.5** 案例：文本處理器
 
