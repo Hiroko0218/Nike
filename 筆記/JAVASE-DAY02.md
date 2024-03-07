@@ -58,7 +58,7 @@ Integer integerObj = num; // 自動裝箱
 
 ​	[ ] 用於描述單一字符，方括號內部可以定義這個字符的內容，也可以描述一個範圍
 
-![1](/images/1.png)
+![1](images/1.png)
 
 - 預定義字符
 
@@ -67,7 +67,7 @@ Integer integerObj = num; // 自動裝箱
 
 ​	" \ " 在正則表達式中是轉義字符，當我們需要描述一個已經被正則表達式使用的特殊字符時，我們就可以使用 " \ " 將其轉變為原本的意思
 
-![2](/images/2.png)
+![2](images/2.png)
 
 - 數量詞
 
@@ -86,7 +86,7 @@ Integer integerObj = num; // 自動裝箱
 
 ​		{ n,m }：表示內容出現n-m 次
 
-![3](/images/3.png)
+![3](images/3.png)
 
 ### **2.5** 案例：文本處理器
 
