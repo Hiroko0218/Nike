@@ -153,7 +153,7 @@ public class CollectionDemo3 {
 
 
 
-![image-20210507171612548](images/image-20210507171612548-16387914484512.png)
+![image-20210507171612548](images/image-20210507171612548.png)
 
 #### 集合間的操作
 
