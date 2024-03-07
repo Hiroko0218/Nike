@@ -378,13 +378,13 @@ public class Server {
 
 ### TCP進行連接時的三次握手
 
-![image-20230411161055080](images\image-20230411161055080.png)
+![image-20230411161055080](images/image-20230411161055080.png)
 
 ### TCP斷開連接時的四次揮手
 
 
 
-![image-20230411162032603](images\image-20230411162032603.png)
+![image-20230411162032603](images/image-20230411162032603.png)
 
 ### 多客戶端鏈接
 
@@ -396,7 +396,7 @@ public class Server {
 
 而第二個客戶端建立鏈接時，由於服務端沒有再次調用accept，因此無法與其交互。
 
-![image-20230411172359125](images\image-20230411172359125.png)
+![image-20230411172359125](images/image-20230411172359125.png)
 
 ```java
 package socket;
@@ -496,7 +496,7 @@ public class Server {
 
 外層的while循環里面嵌套了一個內層循環(循環讀取客戶端發送消息)，而循環執行機制決定了里層循環不結束，外層循環則無法進入第二次操作。
 
-![image-20230411172451959](images\image-20230411172451959.png)
+![image-20230411172451959](images/image-20230411172451959.png)
 
 
 
@@ -529,7 +529,7 @@ public class Server {
 
 ###  線程的生命周期圖
 
-![image-20230412120237771](images\image-20230412120237771.png)
+![image-20230412120237771](images/image-20230412120237771.png)
 
 ### 線程的創建
 
